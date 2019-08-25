@@ -21,5 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  // eslint-disable-next-line func-names
+  // eslint-disable-next-line space-before-function-paren
+  User.prototype.checkPassword = function(password) {
+    return bcrypt.compare(password, this.password_hash);
+  };
+
   return User;
 };
