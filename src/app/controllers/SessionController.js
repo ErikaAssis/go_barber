@@ -1,7 +1,7 @@
 const { User } = require('../models');
 
 class SessionControler {
-  create(req, res) {
+  async create(req, res) {
     return res.render('auth/signin');
   }
 
@@ -10,12 +10,12 @@ class SessionControler {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      console.log('Usuário nao encontrado');
+      req.flash('error', 'Usuário não encontrado');
       return res.redirect('/');
     }
 
     if (!(await user.checkPassword(password))) {
-      console.log('Senha incorreta');
+      req.flash('error', 'Senha incorreta');
       return res.redirect('/');
     }
 
@@ -29,7 +29,6 @@ class SessionControler {
       res.clearCookie('root');
       return res.redirect('/');
     });
-    
   }
 }
 module.exports = new SessionControler();
