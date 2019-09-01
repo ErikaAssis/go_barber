@@ -18,6 +18,7 @@
     "strict": "off",
     "no-unused-vars": "warn",
     "class-methods-use-this": "off",
-    "no-param-reassign": ["error", { "props": false }]
+    "no-param-reassign": ["error", { "props": false }],
+    "radix": ["error", "as-needed"]
   }
 }
